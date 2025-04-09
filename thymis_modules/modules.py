@@ -1,16 +1,16 @@
 import thymis_controller
 import thymis_controller.lib
-import pathlib
 
-from thymis_controller.models import Setting, ModuleSettings
-from thymis_controller.modules import Module, LocalizedString
+import thymis_controller.models
+import thymis_controller.project
+import thymis_controller.modules.modules as modules
 
 
-class Language(Module):
+class Language(modules.Module):
     displayName: str = "Home Assistant"
 
-    language = Setting(
-        display_name=LocalizedString(
+    language = modules.Setting(
+        display_name=modules.LocalizedString(
             en="System language",
             de="Systemsprache",
         ),
@@ -22,12 +22,12 @@ class Language(Module):
     )
 
     def write_nix_settings(
-        self,
-        f,
-        path,
-        module_settings: thymis_controller.models.ModuleSettings,
-        priority: int,
-        project: thymis_controller.project.Project,
+            self,
+            f,
+            path,
+            module_settings: thymis_controller.models.ModuleSettings,
+            priority: int,
+            project: thymis_controller.project.Project,
     ):
         language = (
             module_settings.settings["language"]
@@ -40,4 +40,3 @@ class Language(Module):
             i18n.defaultLocale = "{language}";
             """
         )
-    
