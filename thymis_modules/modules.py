@@ -21,7 +21,7 @@ class Language(Module):
         order=50,
     )
 
-     def write_nix_settings(
+    def write_nix_settings(
         self,
         f,
         path,
