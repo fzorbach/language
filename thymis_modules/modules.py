@@ -7,7 +7,7 @@ import thymis_controller.modules.modules as modules
 
 
 class Language(modules.Module):
-    displayName: str = "Language"
+    display_name: str = "Language"
 
     language = modules.Setting(
         display_name=modules.LocalizedString(
