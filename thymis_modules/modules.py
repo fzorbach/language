@@ -14,7 +14,7 @@ class Language(modules.Module):
             en="System language",
             de="Systemsprache",
         ),
-        type="string",
+        type=modules.SelectOneType(select_one=["en_US.UTF-8", "de_DE.UTF-8"]),
         default="en_US.UTF-8",
         description="language setting",
         example="en_US.UTF-8",
