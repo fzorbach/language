@@ -14,7 +14,7 @@ class Language(modules.Module):
             en="System language",
             de="Systemsprache",
         ),
-        type=modules.SelectOneType(select_one=["en_US.UTF-8", "de_DE.UTF-8"]),
+        type="string",
         default="en_US.UTF-8",
         description="language setting",
         example="en_US.UTF-8",
@@ -30,11 +30,12 @@ class Language(modules.Module):
             project: thymis_controller.project.Project,
     ):
         language = (
-            module_settings.settings["language"] if "language" in module_settings.settings else self.language.default
+            module_settings.settings["language"]
+            if "language" in module_settings.settings 
+            else self.language.default
         )
 
         f.write(
             f"""
-            i18n.defaultLocale = "{language}";
-            """
-        )
+i18n.defaultLocale = "{language}";
+""")
